@@ -1,0 +1,151 @@
+package com.example.rickb.week1weekend;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
+
+
+public class MainActivity extends AppCompatActivity {
+
+
+    String lang;
+    String operation;
+    String numbersStringArray [];
+    float tvValue;
+    Boolean unary = false;
+    TextView output;
+    TextView input;
+    List<Float> numbers = new ArrayList<>();
+    String specialChars = "/!";
+    String excla = "!";
+    String digits = "0123456789";
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        output = findViewById(R.id.calculatorOutput);
+        input = findViewById(R.id.calculatorInput);
+
+    }
+
+    public void onClick(View view) {
+        String temp;
+        float tempVal;
+        temp = input.getText().toString();
+        //switch handles all the different cases for each of the five words
+        switch (view.getId()) {
+
+            case R.id.one:
+                if (temp.isEmpty() || excla.indexOf(temp.charAt(temp.length() - 1)) == -1) {
+                    input.append("1");
+                    break;
+                } else
+                    break;
+            case R.id.two:
+                if (temp.isEmpty() || excla.indexOf(temp.charAt(temp.length() - 1)) == -1) {
+                    input.append("2");
+                    break;
+                } else
+                    break;
+            case R.id.three:
+                if (temp.isEmpty() || excla.indexOf(temp.charAt(temp.length() - 1)) == -1) {
+                    input.append("3");
+                    break;
+                } else
+                    break;
+            case R.id.four:
+                if (temp.isEmpty() || excla.indexOf(temp.charAt(temp.length() - 1)) == -1) {
+                    input.append("4");
+                    break;
+                } else
+                    break;
+            case R.id.five:
+                if (temp.isEmpty() || excla.indexOf(temp.charAt(temp.length() - 1)) == -1) {
+                    input.append("5");
+                    break;
+                } else
+                    break;
+            case R.id.six:
+                if (temp.isEmpty() || excla.indexOf(temp.charAt(temp.length() - 1)) == -1) {
+                    input.append("6");
+                    break;
+                } else
+                    break;
+            case R.id.seven:
+                if (temp.isEmpty() || excla.indexOf(temp.charAt(temp.length() - 1)) == -1) {
+                    input.append("7");
+                    break;
+                } else
+                    break;
+            case R.id.eight:
+
+                if (temp.isEmpty() || excla.indexOf(temp.charAt(temp.length() - 1)) == -1) {
+                    input.append("8");
+                    break;
+                } else
+                    break;
+            case R.id.nine:
+                if (temp.isEmpty() || excla.indexOf(temp.charAt(temp.length() - 1)) == -1) {
+                    input.append("9");
+                    break;
+                } else
+                    break;
+
+            case R.id.zero:
+                temp = input.getText().toString();
+
+                if (!temp.isEmpty() && specialChars.indexOf(temp.charAt(temp.length() - 1)) == -1) {
+                    input.append("0");
+                    break;
+                } else
+                    break;
+
+
+            case R.id.euler:
+                input.append(Float.valueOf((float) Math.E).toString());
+                break;
+            case R.id.pi:
+                input.append(Float.valueOf((float) Math.PI).toString());
+                break;
+
+            case R.id.add:
+
+                if (input.getText().toString().matches("~?[0-9]*\\.?[0-9]*")) {
+                    operation = "+";
+                    input.append("+");
+                    break;
+                } else {
+
+
+                    break;
+                }
+
+            case R.id.subtract:
+                if (input.getText().toString().matches("~?[0-9]*\\.?[0-9]*")) {
+                    operation = "-";
+                    input.append("-");
+                    break;
+
+                } else {
+                    break;
+                }
+
+            case R.id.divide:
+                if (input.getText().toString().matches("~?[0-9]*\\.?[0-9]*")) {
+                    operation = "/";
+                    input.append("/");
+                    break;
+                } else {
+
+                    break;
+                }
+
+            case R.id.multiply:
+                if (input.getText().toString().matches("~?[0-9]*\\.?[0
