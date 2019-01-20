@@ -10,15 +10,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     ArrayList<Animal> animalsArrayList;
-    Context context;
+    int randomNumber;
 
     public RecyclerViewAdapter(ArrayList<Animal> animalsArrayList) {
         this.animalsArrayList = animalsArrayList;
@@ -64,15 +67,43 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView sound;
         ImageView ivImage;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             type = itemView.findViewById(R.id.type);
             name = itemView.findViewById(R.id.name);
             sound = itemView.findViewById(R.id.sound);
             ivImage = itemView.findViewById(R.id.ivImage);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    sampleThreading();
+                    Toast.makeText(v.getContext(), "Population is " + randomNumber, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
+    }
+
+    public void sampleThreading(){
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Random rand = new Random();
+                    System.out.println("Running");
+                    randomNumber = rand.nextInt(50);
+
+                    System.out.println("stop");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        System.out.println("Starting");
+        thread.start();
     }
 }
 

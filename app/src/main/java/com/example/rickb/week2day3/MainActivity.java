@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements RecyclerItemTouchHelperListener {
@@ -53,8 +54,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
             mySqlDatabaseHelper.insertanimal(seagull);
             arrayList.add(seagull);
         }
-
-        sampleThreading();
 
         recyclerView = findViewById(R.id.rvMainRecyclerView);
         rvAdapter = new RecyclerViewAdapter(listOfAnimals());
@@ -104,25 +103,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
         return animalsArrayList;
     }
 
-    public void sampleThreading(){
 
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    System.out.println("Running");
-                    randomNumber = Math.random();
-
-                    System.out.println("stop");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        Thread thread = new Thread(runnable);
-        System.out.println("Starting");
-        thread.start();
-    }
 
 
 }
