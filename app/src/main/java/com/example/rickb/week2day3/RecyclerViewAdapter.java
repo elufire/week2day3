@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
@@ -17,7 +18,7 @@ import java.util.Collections;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     ArrayList<Animal> animalsArrayList;
-
+    Context context;
 
     public RecyclerViewAdapter(ArrayList<Animal> animalsArrayList) {
         this.animalsArrayList = animalsArrayList;
@@ -52,25 +53,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return animalsArrayList != null ? animalsArrayList.size() : 0;
     }
 
-//    @Override
-//    public boolean onItemMove(int fromPosition, int toPosition) {
-//        if (fromPosition < toPosition) {
-//            for (int i = fromPosition; i < toPosition; i++) {
-//                Collections.swap(animalsArrayList, i, i + 1);
-//            }
-//        } else {
-//            for (int i = fromPosition; i > toPosition; i--) {
-//                Collections.swap(animalsArrayList, i, i - 1);
-//            }
-//        }
-//        notifyItemMoved(fromPosition, toPosition);
-//        return true;
-//    }
-//
-//    @Override
-//    public void onItemDismiss(int position) {
-//
-//    }
+    public void removeAnimal(int position){
+        animalsArrayList.remove(position);
+        notifyItemRemoved(position);
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView type;
@@ -84,7 +70,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             name = itemView.findViewById(R.id.name);
             sound = itemView.findViewById(R.id.sound);
             ivImage = itemView.findViewById(R.id.ivImage);
-
 
         }
 
